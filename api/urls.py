@@ -1,8 +1,6 @@
-from django.urls import path, include
+from django.urls import path
+
 
 urlpatterns = [
-    path('home/', include('api.home.urls')),
-    path('dashbord/', include('api.dashbord.urls')),
-    path('masque/', include('api.masque.urls')),
-    path('staff/', include('api.staff.urls')),
+
 ]
