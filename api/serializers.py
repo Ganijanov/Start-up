@@ -9,9 +9,10 @@ class CitySerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
+    city = serializers.SlugRelatedField(read_only=True, slug_field='title')
     class Meta:
         model = models.User
-        fields = '__all__'
+        exclude = ['user_permissions', 'groups', 'is_superuser', 'is_staff', 'is_active', 'last_login', 'password']
 
 
 class HelplessSerializer(serializers.ModelSerializer):
@@ -35,7 +36,7 @@ class BlogSerializer(serializers.ModelSerializer):
 class BlogMediaSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.BlogMedia
-        fields = '__all__'
+        fields = ['image', 'id']
 
 
 class HelpTypeSerializer(serializers.ModelSerializer):

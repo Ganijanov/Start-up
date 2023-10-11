@@ -36,8 +36,8 @@ class Helpless(models.Model):
     birthday = models.DateField()
     created = models.DateTimeField(auto_now_add=True)
     phone = models.CharField(max_length=255)
-    jshshr = models.CharField(max_length=255)
-    created = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    jshshr = models.CharField(max_length=255, blank=True, null=True)
+    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     help_type = models.ManyToManyField(HelpType)
     about = models.TextField()
 
@@ -52,11 +52,12 @@ class HelplessMedia(models.Model):
 
 class Blog(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE) 
+    created = models.DateTimeField(auto_now_add=True)
     about = models.TextField() 
     title = models.CharField(max_length=100) 
 
 
 class BlogMedia(models.Model):
-    image = models.ImageField()
+    image = models.ImageField(upload_to='blog-images/')
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE, blank=True, null=True)
 
